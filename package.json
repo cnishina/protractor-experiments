@@ -1,0 +1,15 @@
+{
+  "name": "protractor-experiments",
+  "version": "1.0.0",
+  "description": "Experiments with Protractor-ish interfaces",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnishina/protractor-experiments.git"
+  },
+  "author": "Craig Nishina <craig.nishina@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnishina/protractor-experiments/issues"
+  },
+  "homepage": "https://github.com/cnishina/protractor-experiments#readme"
+}
