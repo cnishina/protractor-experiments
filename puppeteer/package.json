@@ -2,7 +2,8 @@
   "name": "puppeteer-experiments",
   "version": "1.0.0",
   "scripts": {
-    "test": "npm run test-ptor",
+    "test": "npm run test-ptor && npm run test-cast",
+    "test-cast": "npm run tsc && jasmine JASMINE_CONFIG_PATH=spec/jasmine-cast.json",
     "test-ptor": "npm run tsc && jasmine JASMINE_CONFIG_PATH=spec/jasmine-ptor.json",
     "tsc": "tsc"
   },
