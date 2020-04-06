@@ -29,11 +29,9 @@ describe('Protractor-ish interfaces using Puppeteer', () => {
   })
 
   it('should launch a browser', async () => {
-    await browser.goto('https://google.com');
+    await page.goto('https://github.com');
 
-    // This is the css class for the "Stay home. Saves lives." campaign
-    // on the Google homepage.
-    await element(by.css('.NKcBbd')).click();
+    await element(by.css('a[href="/open-source"]')).click();
 
     await new Promise((resolve) => {
       setTimeout(resolve, 5000);
