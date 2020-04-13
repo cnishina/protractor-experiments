@@ -1,0 +1,18 @@
+{
+  "name": "playwright-issue-1762",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "npm run tsc && jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.5.10",
+    "@types/node": "^13.11.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "jasmine": "^3.5.0",
+    "playwright": "0.13.0"
+  }
+}
