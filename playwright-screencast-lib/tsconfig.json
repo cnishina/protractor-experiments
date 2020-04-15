@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [ "es2017", "dom" ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "outDir": "./dist",
+    "pretty": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2017"
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "output"
+  ]
+}

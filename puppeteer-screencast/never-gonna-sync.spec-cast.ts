@@ -30,13 +30,13 @@ describe('never gonna give you up', () => {
       // no-op: making output directory unless it already exists.
     }
     
-    let frameCount = 0;
     client.on('Page.screencastFrame', async (frame) => {
       await client.send('Page.screencastFrameAck', {
         sessionId: frame.sessionId});
-      const image = path.resolve('output-sync', 'frame' + frameCount + '.png');
+        const image = path.resolve(
+          'output-sync',
+          `frame_${frame.metadata.timestamp.toFixed(6)}.png`);
       fs.writeFileSync(image, frame.data, 'base64');
-      frameCount++;
     });
     
     await page.goto('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
