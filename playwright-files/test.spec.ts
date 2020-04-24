@@ -11,33 +11,29 @@ describe('download testing', () => {
     fs.writeFileSync(filename, 'hello world');
   });
 
-  beforeAll(async () => {
+  it('should upload and download', async () => {
     const headless = false;
-    const playwrightLaunch = await playwright['firefox'].launch({headless});
+    const playwrightLaunch = await playwright['chromium'].launch({headless});
     const context = await playwrightLaunch.newContext({acceptDownloads: true});
     page = await context.newPage();
-  });
+    await page.goto('https://file.io', {waitUntil: 'networkidle'});
 
-  it('should upload and download', async () => {
-    await page.goto('https://file.io', {waitUntil: 'networkidle0'});
+    // Upload files.
 
-    // Upload files works!
-
-    // This is one way to do it.
-    // The documentation needs to be updated here.
-    // page.on('filechooser', async (fileChooser) => {
-    //   await fileChooser.element.setInputFiles(filename);
+    // 1. Playwright documentation shows to do it this way.
+    // page.on('filechooser', async ({element, multiple}) => {
+    //   await element.setInputFiles(filename);
     // });
     // await page.click('input[name="file"]');
-    // await new Promise((resolve) => {
-    //   setTimeout(resolve, 5000);
-    // });
 
-    // This is another way to do it.
+    // 2. Another way to upload a file.
+    // https://github.com/microsoft/playwright/blob/master/docs/examples/README.md#file-uploads
     const input = await page.$('input[name="file"]');
     await input.setInputFiles(filename);
 
-
+    await new Promise((resolve) => {
+      setTimeout(resolve, 200);
+    });
     // Download not working.
     //     Failures:
     // 1) network testing should upload and download
@@ -50,12 +46,25 @@ describe('download testing', () => {
     //         at tryOnTimeout (timers.js:300:5)
     //         at listOnTimeout (timers.js:263:5)
     //         at Timer.processTimers (timers.js:223:10)
-    const download = await Promise.all([
+    // let [ download1 ] = await Promise.all([
+    //   page.waitForEvent('download'),
+    //   page.click('span.lead a[target="_blank"]')
+    // ]);
+    // console.log(await download1.path());
+
+    page.close();
+
+    page = await context.newPage();
+    page.goto('https://github.com/microsoft/playwright/releases', {waitUntil: 'networkidle'});
+
+    // Download a file.
+
+    let [ download2 ] = await Promise.all([
       page.waitForEvent('download'),
-      page.click('span.lead a[target="_blank"]')
+      page.click('a[href="/microsoft/playwright/archive/v0.15.0.zip"]')
     ]);
 
-    console.log(download[0]);
+    console.log(await download2.path());
     await new Promise((resolve) => {
       setTimeout(resolve, 1500);
     });
