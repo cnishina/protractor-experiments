@@ -2,9 +2,10 @@
   "name": "webdriver-execute-async",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index1.js",
   "scripts": {
-    "test": "npx tsc && node dist"
+    "test-async-execute": "npx tsc && node dist/async_execute_script",
+    "test-execute": "npx tsc && node dist/execute_script"
   },
   "author": "",
   "devDependencies": {
